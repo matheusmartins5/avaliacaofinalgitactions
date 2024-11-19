@@ -1,34 +1,33 @@
 describe('Adicionar produto à lista de desejos', () => {
-    it('Deve adicionar um produto à lista de desejos', () => {
-      cy.visit('/index.php?route=account/login');
-      cy.get('#input-email').type('matheusmartins@ienh.com.br');
-      cy.get('#input-password').type('aaaaa'), { delay: 100 };
-      cy.get('button').contains('Login').click();
-  
-      cy.wait(3000);
-  
-      cy.contains('My Account').should('be.visible');
-  
-      cy.visit('/');
-  
-      cy.wait(3000);
-  
-      cy.contains('MacBook').should('be.visible').click();
-  
-      cy.wait(2000);
-  
-      cy.get('button[data-bs-original-title="Add to Wish List"] i.fa-heart').click({ force: true });
+  it('Deve adicionar um produto à lista de desejos', () => {
+    // Acessa a página de login
+    cy.visit('/index.php?route=account/login');
 
-      cy.get('button').contains('fa-solid fa-heart').click();
+    // Realiza o login
+    cy.get('#input-email').type('matheusmartins@ienh.com.br');
+    cy.get('#input-password').type('aaaaa');
+    cy.get('button').contains('Login').click();
 
-      //teste
+    // Verifica se o login foi bem-sucedido
+    cy.contains('My Account').should('be.visible');
 
+    // Vai para a página inicial
+    cy.visit('/');
 
+    // Clica no produto "MacBook"
+    cy.contains('MacBook').click();
 
+    // Verifica o carregamento do produto
+    cy.url().should('include', 'macbook');
+    cy.get('h1').should('contain', 'MacBook');
 
-      cy.wait(2000);
-  
-      cy.get('.alert').should('contain', 'Success: You have added MacBook to your wish list');
-    });
+    cy.get('button[data-bs-original-title="Add to Wish List"]')
+  .scrollIntoView()
+  .trigger('mouseover')
+  .should('be.visible')
+  .click();
+
+    // Verifica a mensagem de sucesso
+    cy.get('.alert').should('contain', 'Success: You have added MacBook to your wish list');
   });
-  
+});
