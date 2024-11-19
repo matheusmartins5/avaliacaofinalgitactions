@@ -6,10 +6,8 @@ describe('Login e Alteração de Senha', () => {
     cy.get('#input-password').type('aaaaa');
     cy.get('button').contains('Login').click();
 
-   
     cy.contains('My Account').should('be.visible');
 
-    
     cy.contains('Change your password').click(); 
 
     cy.get('#input-password').type('aaaaa');
