@@ -5,6 +5,8 @@ describe('Trocar moeda do site', () => {
     cy.contains('Euro').click();
     cy.wait(2000);
     cy.get('.price').first().should('contain', '€');
+
+    //Teste
   });
 });
 
