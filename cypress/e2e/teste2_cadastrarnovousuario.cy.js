@@ -4,12 +4,12 @@ describe('Cadastrar novo usuário', () => {
   
       cy.wait(3000);
   
-      const uniqueEmail = `user_${Date.now()}@example.com`;
+      const uniqueEmail = `usuario${Date.now()}@ienh.com`;
   
-      cy.get('#input-firstname').type('John');
-      cy.get('#input-lastname').type('Doe');
+      cy.get('#input-firstname').type('Matheus');
+      cy.get('#input-lastname').type('Martins');
       cy.get('#input-email').type(uniqueEmail);
-      cy.get('#input-password').type('password');
+      cy.get('#input-password').type('senha1234');
       cy.get('input[name="agree"]').check();
 
       cy.contains('Continue').click();
