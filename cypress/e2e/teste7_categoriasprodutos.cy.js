@@ -41,7 +41,7 @@ describe('Acesso às Categorias de Produtos', () => {
   
       cy.visit('/');
       
-      cy.contains('Cameras').click();
+      cy.get('a.nav-link[href="https://demo.opencart.com/en-gb/catalog/cameras"]').click();
       cy.get('h2').should('contain', 'Cameras');
 
       cy.wait(5000);
