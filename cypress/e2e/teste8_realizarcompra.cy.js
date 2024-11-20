@@ -7,12 +7,14 @@ describe('Realizar compra completa', () => {
   
         cy.get('#input-email').type('matheusmartins@ienh.com.br' ,{ delay: 100 });
         cy.get('#input-password').type('aaaaa'), { delay: 100 };
-        cy.get('button').contains('Login').click();
+        cy.get('button').contains('Login').click(), {delay:100};
   
+        cy.wait(2000);
         cy.contains('My Account').should('be.visible');
 
         cy.visit('/');
         cy.wait(2000);
+
         cy.contains('Desktops').click();
         cy.contains('Mac (1)').click();
         cy.get('h4').should('contain', 'iMac');
@@ -20,7 +22,7 @@ describe('Realizar compra completa', () => {
         cy.wait(2000);
 
         cy.contains('Add to Cart').should('be.visible').click();
-        cy.wait(5000);
+        cy.wait(2000);
 
         cy.contains('shopping cart').should('be.visible');
         cy.wait(2000);

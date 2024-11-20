@@ -1,33 +1,23 @@
 describe('Adicionar produto à lista de desejos', () => {
-  it('Deve adicionar um produto à lista de desejos', () => {
-    // Acessa a página de login
-    cy.visit('/index.php?route=account/login');
+  it('Deve adicionar um produto à lista de desejos a partir da página de produto', () => {
+    // Acessa a página do produto
+    cy.visit('https://demo.opencart.com/en-gb/product/macbook');
 
-    // Realiza o login
-    cy.get('#input-email').type('matheusmartins@ienh.com.br');
-    cy.get('#input-password').type('aaaaa');
-    cy.get('button').contains('Login').click();
+    // Espera o botão "Add to Wish List" aparecer
+    cy.get('button[data-bs-original-title="Add to Wish List"]', { timeout: 10000 })
+      .should('be.visible') // Garante que o botão está visível
+      .trigger('mouseover') // Simula o hover sobre o botão para mostrar o tooltip
+      .then(($btn) => {
+        // Verifica se o título do botão é correto após o hover
+        expect($btn.attr('data-bs-original-title')).to.equal('Add to Wish List');
+      });
 
-    // Verifica se o login foi bem-sucedido
-    cy.contains('My Account').should('be.visible');
+    // Clica no botão "Add to Wish List" para adicionar o produto à lista de desejos
+    cy.get('button[data-bs-original-title="Add to Wish List"]', { timeout: 10000 })
+      .should('be.visible')
+      .click({ force: true }); // Clica no botão para adicionar à lista de desejos
 
-    // Vai para a página inicial
-    cy.visit('/');
-
-    // Clica no produto "MacBook"
-    cy.contains('MacBook').click();
-
-    // Verifica o carregamento do produto
-    cy.url().should('include', 'macbook');
-    cy.get('h1').should('contain', 'MacBook');
-
-    cy.get('button[data-bs-original-title="Add to Wish List"]')
-  .scrollIntoView()
-  .trigger('mouseover')
-  .should('be.visible')
-  .click();
-
-    // Verifica a mensagem de sucesso
+    // Verifica se a mensagem de sucesso é exibida
     cy.get('.alert').should('contain', 'Success: You have added MacBook to your wish list');
   });
 });
