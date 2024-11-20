@@ -36,10 +36,12 @@ describe('Realizar compra completa', () => {
         cy.get('#button-shipping-methods').click(); 
         cy.get('#input-shipping-method-flat-flat').type('Flat Shipping Rate - $5.00'); 
         cy.get('#button-shipping-method').click({ force: true }); 
+        cy.wait(2000);
 
         cy.get('#button-payment-methods').click(); 
         cy.get('#input-payment-method-cod-cod').type('Cash On Delivery'); 
         cy.get('#button-payment-method').click({ force: true });
+        cy.wait(2000);
 
         cy.get('button').contains('Confirm Order').click();
 
