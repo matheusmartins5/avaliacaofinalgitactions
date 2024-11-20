@@ -41,7 +41,7 @@ describe('Acesso às Categorias de Produtos', () => {
   
       cy.visit('/');
       
-      cy.contains('Cameras').click();  // Aqui clicamos no item "Cameras" diretamente
+      cy.contains('Cameras').click();
       cy.get('h2').should('contain', 'Cameras');
 
       cy.wait(5000);
