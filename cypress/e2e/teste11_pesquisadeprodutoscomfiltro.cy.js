@@ -8,6 +8,7 @@ describe('Pesquisa de produto', () => {
       cy.get('button[type="button"]').first().click(); 
 
       cy.get('.product-thumb').should('have.length.greaterThan', 0); 
+      cy.wait(2000);
 
       cy.get('select[name="category_id"]').should('be.visible');
       

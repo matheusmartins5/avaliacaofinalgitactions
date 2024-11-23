@@ -6,9 +6,9 @@ describe('Cadastrar novo usuário', () => {
   
       const uniqueEmail = `usuario${Date.now()}@ienh.com`;
   
-      cy.get('#input-firstname').type('Matheus');
-      cy.get('#input-lastname').type('Martins');
-      cy.get('#input-email').type(uniqueEmail);
+      cy.get('#input-firstname').type('Matheus'), { delay: 100 };
+      cy.get('#input-lastname').type('Martins'), { delay: 100 };
+      cy.get('#input-email').type(uniqueEmail), { delay: 100 };
       cy.get('#input-password').type('senha1234');
       cy.get('input[name="agree"]').check();
 

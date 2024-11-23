@@ -10,11 +10,10 @@ describe('Cadastrar novo usuário com o e-mail de um usuário existente', () => 
       cy.get('#input-password').type('senha1234');
       cy.get('input[name="agree"]').check();
 
-      cy.contains('Continue').click();
       cy.wait(2000);
-  
-      cy.get('h1').should('contain', 'Your Account Has Been Created!');
-      cy.contains('Congratulations! Your new account has been successfully created!').should('be.visible');
+      cy.contains('Continue').click();
+
+      cy.contains('Warning: E-Mail Address is already registered!').should('be.visible');
     });
   });
 

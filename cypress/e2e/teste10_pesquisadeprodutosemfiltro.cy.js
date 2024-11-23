@@ -1,6 +1,5 @@
 describe('Pesquisa de produto', () => {
     it('Deve pesquisar por "Canon" e exibir resultados', () => {
-      // Acessa a página principal
       cy.visit('/');
   
       cy.get('input[name="search"]').type('iPod');
