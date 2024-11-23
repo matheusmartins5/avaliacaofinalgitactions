@@ -25,6 +25,9 @@ describe('Adicionar novo endereço na conta', () => {
         cy.get('#input-zone').select('Rio Grande do Sul', { delay: 100 });
         cy.contains('Continue').click();
 
+        //Utilizei um gerador de cep para gerar esses dados
+        //Site: https://www.invertexto.com/gerador-de-cep
+
         cy.contains('Your address has been successfully added').should('be.visible');
     });
 });
