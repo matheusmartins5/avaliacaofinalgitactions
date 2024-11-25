@@ -1,9 +1,7 @@
 describe('Comparar produto', () => {
     it('Deve adicionar produtos à comparação com sucesso', () => {
-        // Passo 1: Visitar a página principal
         cy.visit('/');
 
-        // Passo 2: Acessar "My Account" e realizar login
         cy.get('a').contains('My Account').click();
         cy.get('a').contains('Login').click();
 
